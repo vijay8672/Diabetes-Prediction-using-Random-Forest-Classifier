@@ -1,0 +1,30 @@
+stages:
+  preprocess:
+    cmd: python src/Data_preprocessing/preprocessing.py
+    deps:
+    - Data/Raw_data/diabetes_data.csv
+    - src/Data_preprocessing/preprocessing.py
+    params:
+    - preprocess.input
+    - preprocess.output
+    outs:
+    - Data/processed/diabetes_data.csv
+  train:
+    cmd: python src/model_training/training.py
+    deps:
+    - Data/processed/diabetes_data.csv
+    - src/model_training/training.py
+    params:
+    - train.data
+    - train.max_depth
+    - train.model
+    - train.n_estimators
+    - train.random_state
+    outs:
+    - models/model.pkl
+  evaluate:
+    cmd: python src/model_evaluation/evaluate.py
+    deps:
+    - Data/processed/diabetes_data.csv
+    - models/model.pkl
+    - src/model_evaluation/evaluate.py

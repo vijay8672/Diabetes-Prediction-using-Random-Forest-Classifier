@@ -44,17 +44,22 @@ This project demonstrates how to manage the lifecycle of a machine learning proj
 
 dvc stage add -n preprocess \
     -p preprocess.input,preprocess.output \
-    -d src/preprocess.py -d data/raw/data.csv \
-    -o data/processed/data.csv \
-    python src/preprocess.py
-	
-	
+    -d src/Data_preprocessing/preprocessing.py \
+    -d Data/Raw_data/diabetes_data.csv \
+    -o Data/processed/diabetes_data.csv \
+    python src/Data_preprocessing/preprocessing.py
+
+
 dvc stage add -n train \
     -p train.data,train.model,train.random_state,train.n_estimators,train.max_depth \
-    -d src/train.py -d data/raw/data.csv \
+    -d src/model_training/training.py \
+    -d Data/processed/diabetes_data.csv \
     -o models/model.pkl \
-    python src/train.py
-	
+    python src/model_training/training.py
+
+
 dvc stage add -n evaluate \
-    -d src/evaluate.py -d models/model.pkl -d data/raw/data.csv \
-    python src/evaluate.py
+    -d src/model_evaluation/evaluate.py \
+    -d models/model.pkl \
+    -d Data/processed/diabetes_data.csv \
+    python src/model_evaluation/evaluate.py

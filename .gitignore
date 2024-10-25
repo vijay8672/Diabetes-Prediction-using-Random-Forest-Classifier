@@ -1,0 +1,10 @@
+myenv/
+
+
+.history/
+
+__pycache__/
+
+logs/
+
+dvc_staging_code.txt
