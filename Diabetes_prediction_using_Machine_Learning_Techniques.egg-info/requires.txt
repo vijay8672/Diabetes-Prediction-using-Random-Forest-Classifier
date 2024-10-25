@@ -5,5 +5,3 @@ mlflow
 dvc-s3
 pandas
 numpy
-
--e .

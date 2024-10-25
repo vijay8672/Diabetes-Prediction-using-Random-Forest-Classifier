@@ -8,3 +8,7 @@ __pycache__/
 logs/
 
 dvc_staging_code.txt
+
+build/
+dist/
+*.egg-info/
